@@ -3,6 +3,8 @@ const mongoose = require("mongoose")
 const cors = require('cors');
 const dotenv = require("dotenv")
 
+const authRoute = require("./routes/auth/auth")
+
 dotenv.config()
 const app = express();
 const port = process.env.PORT || 4000;
@@ -10,6 +12,8 @@ const port = process.env.PORT || 4000;
 app.use(cors());
 app.use(express.json());
 app.use(express.urlencoded({ extended: true }))
+
+app.use("/api/auth", authRoute)
 
 const uri = process.env.ATLAS_URI;
 mongoose.connect(
