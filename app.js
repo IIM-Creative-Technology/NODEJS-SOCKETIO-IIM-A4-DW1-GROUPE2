@@ -4,6 +4,7 @@ const cors = require('cors');
 const dotenv = require("dotenv")
 
 const authRoute = require("./routes/auth/auth")
+const crudRoute = require("./routes/crud/crud.routes")
 
 dotenv.config()
 const app = express();
@@ -14,6 +15,7 @@ app.use(express.json());
 app.use(express.urlencoded({ extended: true }))
 
 app.use("/api/auth", authRoute)
+app.use("/api/crud", crudRoute)
 
 app.get('/health', (req, res) => {
     res.send(true)
