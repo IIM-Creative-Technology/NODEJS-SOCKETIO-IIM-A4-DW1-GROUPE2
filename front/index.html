@@ -1,0 +1,30 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <title>IIM</title>
+</head>
+<body>
+    <h3>No account ? signup : </h3>
+    <div class="input">
+        <label for="username">user name:</label>
+        <input id="username-signup" type="username">
+        <label for="password">password:</label>
+        <input id="password-signup" type="password">
+        <button onclick="signup()">signup</button>
+      </div>
+
+ <h3>Already have an account ? : Log in</h3>
+  <div class="input">
+    <label for="username">user name:</label>
+    <input id="username" type="username">
+    <label for="password">password:</label>
+    <input id="password" type="password">
+    <button onclick="login()">login</button>
+  </div>
+  <div id="token"></div>
+  <!-- <button onclick="getSecret()">get secret message</button> -->
+  <div id="result"></div>
+  <script src="script.js"></script>
+</body>
+</html>
