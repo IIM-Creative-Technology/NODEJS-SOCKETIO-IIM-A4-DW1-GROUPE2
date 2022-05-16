@@ -10,17 +10,15 @@ router.post("/signup", async (req, res) => {
             message: "bad authentication",
             response: false
         })
-
-        const userExist = await User.findOne({ user: username })
+        const userExist = await User.findOne({ username })
         if (userExist) return res.status(401).send({
             message: "user already exist",
             response: false
         })
-
         const salt = await bcrypt.genSalt(10)
         const hashedPassword = await bcrypt.hash(password, salt)
         const user = new User({
-            username: username,
+            username,
             password: hashedPassword,
         })
         await user.save()
@@ -37,6 +35,7 @@ router.post("/signup", async (req, res) => {
 
 router.post("/login", async (req, res) => {
     const { username, password } = req.body;
+
     if (!username || !password) return res.status(401).send({
         message: "bad authentication",
         response: false

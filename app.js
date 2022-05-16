@@ -15,6 +15,10 @@ app.use(express.urlencoded({ extended: true }))
 
 app.use("/api/auth", authRoute)
 
+app.get('/health', (req, res) => {
+    res.send(true)
+})
+
 const uri = process.env.ATLAS_URI;
 mongoose.connect(
     uri,
