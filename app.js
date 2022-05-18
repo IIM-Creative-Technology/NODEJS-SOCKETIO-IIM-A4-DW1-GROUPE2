@@ -1,7 +1,9 @@
 const express = require('express');
 const mongoose = require("mongoose")
 const cors = require('cors');
-const dotenv = require("dotenv")
+const dotenv = require("dotenv");
+const fileUpload = require('express-fileupload');
+
 
 const authRoute = require("./routes/auth/auth")
 const crudRoute = require("./routes/crud/crud.routes")
@@ -20,10 +22,15 @@ const io = require('socket.io')(server, {
 })
 const port = process.env.PORT || 4000;
 
+app.use(fileUpload({
+    createParentPath: true
+}));
+
 app.use(cors());
 app.use(express.json());
 app.use(express.urlencoded({ extended: true }))
-
+app.get("/uploads/*", (req, res) => res.sendFile(req.url, {root: './'}))
+app.use(express.static(__dirname+'/uploads'));
 app.use("/api/auth", authRoute)
 app.use("/api/crud", crudRoute)
 app.use("/api/user", userRoute)
