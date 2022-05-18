@@ -42,7 +42,9 @@ router.post("/login", async (req, res) => {
     })
 
     try {
-        const user = await User.findOne({ user: username })
+        console.log('username', username)
+        const user = await User.findOne({ username })
+        console.log('user', user)
         if (!user) return res.status(401).send({
             message: "Invalid email or password",
             response: false
