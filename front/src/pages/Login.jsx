@@ -30,10 +30,10 @@ export default function Login() {
   const validateForm = () => {
     const { username, password } = values;
     if (username === "") {
-      toast.error("Email and Password is required.", toastOptions);
+      toast.error("Username is required.", toastOptions);
       return false;
     } else if (password === "") {
-      toast.error("Email and Password is required.", toastOptions);
+      toast.error("Password is required.", toastOptions);
       return false;
     }
     return true;
@@ -47,17 +47,15 @@ export default function Login() {
         username,
         password,
       });
+
       if (data.status === false) {
         toast.error(data.msg, toastOptions);
       }
-      if (data.status === true) {
-        localStorage.setItem(
-          'token',
-          data.response.token
-        );
-
-        navigate("/");
-      }
+      localStorage.setItem(
+        'token',
+        data.response.token
+      );
+      navigate("/");
     }
   };
 

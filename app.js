@@ -62,7 +62,6 @@ io.on('connect', (socket) => {
     });
 
     socket.on('send-chat-message', async message => {
-        console.log('message', message)
         await MessageModel.create({
             message: { text: message.msg },
             users: [message.from, message.to],
