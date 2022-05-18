@@ -42,16 +42,25 @@ app.get('/health', (req, res) => {
 
 const usersOnline = [];
 io.on('connect', (socket) => {
-    console.log(`Connecté au client ${socket.id}`)
+    console.log(`${socket.id} connected`)
     socket.on("add-user", (userId) => {
         const data = {
             id: userId,
             socketId: socket.id
         }
-        console.log('data', data)
+        if (usersOnline.length > 0) {
+            usersOnline.forEach(user => {
+                if (user.id !== data.id) {
+                    usersOnline.push(data)
+                }
+                if (user.id === data.id) {
+                    user.socketId = data.socketId
+                }
+            })
+        }
         usersOnline.push(data);
-      });
-    
+    });
+
     socket.on('send-chat-message', async message => {
         console.log('message', message)
         await MessageModel.create({
@@ -60,8 +69,6 @@ io.on('connect', (socket) => {
             sender: message.from,
         });
         const sendUserSocket = usersOnline.find(user => user.id === message.to)
-        console.log('usersOnline', usersOnline)
-        console.log('sendUserSocket', sendUserSocket)
         socket.to(sendUserSocket.socketId).emit("msg-receive", message.msg);
     })
 })
