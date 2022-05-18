@@ -2,7 +2,7 @@ const crud = require("../model/crud")
 
 exports.create = async (req, res) => {
     const image = req.files.image;
-    const imgLink = 'uploads/' + image.name;
+    const imgLink = 'public/public/assets/image' + image.name;
     await image.mv(imgLink)
     const create = new crud({
         title: req.body.title,
