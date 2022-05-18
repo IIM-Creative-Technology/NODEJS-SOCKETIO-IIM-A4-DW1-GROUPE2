@@ -1,10 +1,15 @@
 const crud = require("../model/crud")
+const {isMac} = require("nodemon/lib/utils");
 
-exports.create = (req, res) => {
+
+exports.create = async (req, res) => {
+    const image = req.files.image;
+    const imgLink = 'uploads/' + image.name;
+    await image.mv(imgLink)
     const create = new crud({
         title: req.body.title,
         description: req.body.description,
-        published: req.body.published ? req.body.published : false
+        image: imgLink,
     });
     create
         .save(create)

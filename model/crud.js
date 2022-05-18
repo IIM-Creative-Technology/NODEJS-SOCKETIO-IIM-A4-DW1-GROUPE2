@@ -13,13 +13,16 @@ const crudSchema = new Schema({
         max: 255,
         required: true,
     },
+    image:{
+        type: String,
+    },
     postTime:{
         type: Date,
         default: Date.now
     },
     updateTime:{
         type: Date,
-        default: Date.now()
+        default: Date.now
     }
 })
 
