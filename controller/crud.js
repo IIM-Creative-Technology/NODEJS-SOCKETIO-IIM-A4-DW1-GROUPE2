@@ -1,6 +1,4 @@
 const crud = require("../model/crud")
-const {isMac} = require("nodemon/lib/utils");
-
 
 exports.create = async (req, res) => {
     const image = req.files.image;
