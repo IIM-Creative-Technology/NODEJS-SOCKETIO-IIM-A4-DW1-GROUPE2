@@ -1,10 +1,10 @@
-import React, { useState, useEffect } from "react";
 import axios from "axios";
-import styled from "styled-components";
-import { useNavigate, Link } from "react-router-dom";
-import Logo from "../assets/logo.svg";
-import { ToastContainer, toast } from "react-toastify";
+import React, { useEffect, useState } from "react";
+import { Link, useNavigate } from "react-router-dom";
+import { toast, ToastContainer } from "react-toastify";
 import "react-toastify/dist/ReactToastify.css";
+import styled from "styled-components";
+import Logo from "../assets/logo.svg";
 import { registerRoute } from "../utils/APIRoutes";
 
 export default function Register() {
@@ -18,9 +18,7 @@ export default function Register() {
   };
   const [values, setValues] = useState({
     username: "",
-    email: "",
     password: "",
-    confirmPassword: "",
   });
 
   useEffect(() => {
@@ -34,27 +32,18 @@ export default function Register() {
   };
 
   const handleValidation = () => {
-    const { password, confirmPassword, username, email } = values;
-    if (password !== confirmPassword) {
-      toast.error(
-        "Password and confirm password should be same.",
-        toastOptions
-      );
-      return false;
-    } else if (username.length < 3) {
+    const { password, username } = values;
+    if (username.length < 3) {
       toast.error(
         "Username should be greater than 3 characters.",
         toastOptions
       );
       return false;
-    } else if (password.length < 8) {
+    } else if (password.length < 3) {
       toast.error(
-        "Password should be equal or greater than 8 characters.",
+        "Password should be equal or greater than 3 characters.",
         toastOptions
       );
-      return false;
-    } else if (email === "") {
-      toast.error("Email is required.", toastOptions);
       return false;
     }
 
@@ -64,23 +53,20 @@ export default function Register() {
   const handleSubmit = async (event) => {
     event.preventDefault();
     if (handleValidation()) {
-      const { email, username, password } = values;
+      const { username, password } = values;
       const { data } = await axios.post(registerRoute, {
         username,
-        email,
         password,
       });
 
       if (data.status === false) {
         toast.error(data.msg, toastOptions);
       }
-      if (data.status === true) {
-        localStorage.setItem(
-          process.env.REACT_APP_LOCALHOST_KEY,
-          JSON.stringify(data.user)
-        );
-        navigate("/");
-      }
+      localStorage.setItem(
+        'token',
+        data.response
+      );
+      navigate("/");
     }
   };
 
@@ -99,21 +85,9 @@ export default function Register() {
             onChange={(e) => handleChange(e)}
           />
           <input
-            type="email"
-            placeholder="Email"
-            name="email"
-            onChange={(e) => handleChange(e)}
-          />
-          <input
             type="password"
             placeholder="Password"
             name="password"
-            onChange={(e) => handleChange(e)}
-          />
-          <input
-            type="password"
-            placeholder="Confirm Password"
-            name="confirmPassword"
             onChange={(e) => handleChange(e)}
           />
           <button type="submit">Create User</button>
