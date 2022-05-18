@@ -1,6 +1,7 @@
 const user = require("../model/user")
 
 exports.findOne = async (req, res) => {
+    console.log('ici');
     const id = req.user.user._id;
     await user.findById(id)
         .then(data => {
@@ -13,4 +14,9 @@ exports.findOne = async (req, res) => {
                 .status(500)
                 .send({ message: "Erreur lors de la recuperation de l'element avec l'id=" + id });
         });
+};
+
+exports.findAll = async (req, res) => {
+    const users = await user.find({});
+    res.send(users)
 };

@@ -22,7 +22,6 @@ const userSchema = new Schema({
         min: 6,
         max: 255
     },
-    conversation_id: Array,
 })
 
 module.exports = mongoose.model("user", userSchema)
