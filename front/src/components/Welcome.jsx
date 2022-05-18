@@ -40,6 +40,10 @@ const Container = styled.div`
   align-items: center;
   color: white;
   flex-direction: column;
+  width: 50%;
+  @media screen and (max-width: 720px) {
+    width: 100%;
+  }
   img {
     height: 20rem;
   }
