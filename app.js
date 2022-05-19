@@ -62,13 +62,15 @@ io.on('connect', (socket) => {
     });
 
     socket.on('send-chat-message', async message => {
+        const sendUserSocket = usersOnline.find(user => user.id === message.to)
+        if (sendUserSocket) {
+            socket.to(sendUserSocket.socketId).emit("msg-receive", message.msg);
+        }
         await MessageModel.create({
             message: { text: message.msg },
             users: [message.from, message.to],
             sender: message.from,
         });
-        const sendUserSocket = usersOnline.find(user => user.id === message.to)
-        socket.to(sendUserSocket.socketId).emit("msg-receive", message.msg);
     })
 })
 
