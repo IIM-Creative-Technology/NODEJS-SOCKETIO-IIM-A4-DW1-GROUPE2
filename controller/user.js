@@ -1,7 +1,6 @@
 const user = require("../model/user")
 
 exports.findOne = async (req, res) => {
-    console.log('ici');
     const id = req.user.user._id;
     await user.findById(id)
         .then(data => {
