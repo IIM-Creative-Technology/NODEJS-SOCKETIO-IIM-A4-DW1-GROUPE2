@@ -24,8 +24,7 @@ exports.create = async (req, res) => {
 
 exports.findAll = (req, res) => {
     const title = req.query.title;
-    let condition = title ? { title: { $regex: new RegExp(title), $options: "i" } } : {};
-    crud.find(condition)
+    crud.find(title)
         .then(data => {
             res.send(data);
         })
