@@ -8,7 +8,7 @@
 Aller à la racine du dossier, effectuer la commande ``` npm install``` puis ``` npm run dev ```
 
 > ### **Lancement du front en REACT** :
-Aller dans le dossier front, effectuer la commande ```npm install``` puis ``` npm start ```
+Aller dans le dossier ```/front```, effectuer la commande ```npm install``` puis ``` npm start ```
 
 > ### **Route de l'API** :
 - Pour acceder au CRUD l'URL est : ``` /api/crud ``` ( l'ensemble des routes du crud sont visibles dans le fichier ```routes/crud/crud.routes.js``` )
@@ -19,4 +19,4 @@ Aller dans le dossier front, effectuer la commande ```npm install``` puis ``` np
 > ### **Route du Front** :
 - Pour acceder au site l'URL est : ``` / ```
 - Pour se connecter au site l'URL est : ``` /login ```
-- Pour créer un au site l'URL est : ``` /register ```
+- Pour créer un compte sur le site l'URL est : ``` /register ```
