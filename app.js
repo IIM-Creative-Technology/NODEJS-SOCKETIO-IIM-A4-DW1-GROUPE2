@@ -40,7 +40,7 @@ app.get('/health', (req, res) => {
     res.send(true)
 })
 
-const usersOnline = [];
+let usersOnline = [];
 io.on('connect', (socket) => {
     console.log(`${socket.id} connected`)
     socket.on("add-user", (userId) => {
@@ -71,6 +71,10 @@ io.on('connect', (socket) => {
             users: [message.from, message.to],
             sender: message.from,
         });
+    })
+
+    socket.on('disconnect-user', (userId) => {
+        usersOnline = usersOnline.filter(user => user.id !== userId)
     })
 })
 
