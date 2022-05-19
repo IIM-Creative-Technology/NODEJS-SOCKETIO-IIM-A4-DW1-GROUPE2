@@ -40,7 +40,7 @@ export default function ChatInput({ handleSendMsg }) {
           onChange={(e) => setMsg(e.target.value)}
           value={msg}
         />
-        <button type="submit">
+        <button type="submit" className="button_submit">
           <IoMdSend />
         </button>
       </form>
@@ -129,6 +129,7 @@ const Container = styled.div`
       align-items: center;
       background-color: #9a86f3;
       border: none;
+      cursor: pointer;
       @media screen and (min-width: 720px) and (max-width: 1080px) {
         padding: 0.3rem 1rem;
         svg {
