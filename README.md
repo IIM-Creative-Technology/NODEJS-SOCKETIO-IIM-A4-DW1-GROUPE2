@@ -18,3 +18,5 @@ Aller dans le dossier front, effectuer la commande ```npm install``` puis ``` np
 
 > ### **Route de le Front** :
 - Pour acceder au site l'URL est : ``` / ```
+- Pour se connecter au site l'URL est : ``` /login ```
+- Pour créer un au site l'URL est : ``` /register ```
