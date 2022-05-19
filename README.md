@@ -16,7 +16,7 @@ Aller dans le dossier front, effectuer la commande ```npm install``` puis ``` np
 - Pour acceder au User l'URL est : ``` /api/user ```
 - Pour s'authentifier l'URL est : ``` /api/auth ```
 
-> ### **Route de le Front** :
+> ### **Route du Front** :
 - Pour acceder au site l'URL est : ``` / ```
 - Pour se connecter au site l'URL est : ``` /login ```
 - Pour créer un au site l'URL est : ``` /register ```
