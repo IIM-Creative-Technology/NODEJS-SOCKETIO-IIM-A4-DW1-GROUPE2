@@ -18,7 +18,7 @@ export default function Login() {
     theme: "dark",
   };
   useEffect(() => {
-    if (localStorage.getItem('token')) {
+    if (localStorage.getItem('token') !== undefined) {
       navigate("/");
     }
   }, []);
